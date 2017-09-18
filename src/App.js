@@ -1,18 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import TodoHeader from './components/TodoHeader';
+import TodoList from './components/TodoList';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      todo: '',
+      todoList: []
+    }
+    this.inputTodo = this.inputTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
+    this.checkTodo = this.checkTodo.bind(this);
+  }
+
+  checkTodo(checkedIndex) {
+    this.setState({
+      todoList: this.state.todoList.map((todo, index) => {
+        return checkedIndex === index ? { ...todo, checked: !todo.checked } : todo;
+      })
+    })
+  }
+
+  addTodo() {
+    this.setState({
+      todo: '',
+      todoList: [
+        ...this.state.todoList,
+        {
+          name: this.state.todo,
+          checked: false
+        }
+      ]
+    })
+  }
+
+  inputTodo(value) {
+    this.setState({
+      todo: value
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <TodoHeader
+          todo={this.state.todo}
+          inputTodo={this.inputTodo}
+          addTodo={this.addTodo}
+        />
+        <TodoList
+          todoList={this.state.todoList}
+          checkTodo={this.checkTodo}
+        />
+
       </div>
     );
   }
