@@ -9,13 +9,12 @@ const TodoHeader = props =>
       onChange={(e) => {
         props.inputTodo(e.target.value);
       }}
+      onKeyDown={(e) => {
+        if(e.keyCode === 13) {
+          props.addTodo();       
+        }
+      }}
     />
-    <button
-      class="add-button"
-      onClick={props.addTodo}
-    >
-      +
-    </button>
   </div>
 ;
 

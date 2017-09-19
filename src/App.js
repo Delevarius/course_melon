@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TodoHeader from './components/TodoHeader';
 import TodoList from './components/TodoList';
+import TodoFilter from './components/TodoFilter';
 import './App.css';
 
 class App extends Component {
@@ -8,11 +9,17 @@ class App extends Component {
     super();
     this.state = {
       todo: '',
-      todoList: []
+      todoList: [],
+      mode: 'ALL'
     }
     this.inputTodo = this.inputTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
     this.checkTodo = this.checkTodo.bind(this);
+    this.changeMode = this.changeMode.bind(this);
+  }
+
+  changeMode(mode) {
+    this.setState({ mode });
   }
 
   checkTodo(checkedIndex) {
@@ -36,10 +43,8 @@ class App extends Component {
     })
   }
 
-  inputTodo(value) {
-    this.setState({
-      todo: value
-    })
+  inputTodo(todo) {
+    this.setState({ todo })
   }
 
   render() {
@@ -54,7 +59,10 @@ class App extends Component {
           todoList={this.state.todoList}
           checkTodo={this.checkTodo}
         />
-
+        <TodoFilter
+          changeMode={this.changeMode}
+          mode={this.state.mode}
+        />
       </div>
     );
   }

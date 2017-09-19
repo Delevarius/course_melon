@@ -1,10 +1,11 @@
 import React from 'react';
 
 const TodoList = props =>
-  <ul className="Todo_List">
+  <ul className="todo-list">
     {
       props.todoList.map((todo, index) =>
         <li
+          className="todo-item"
           style={{
             textDecoration: todo.checked ? 'line-through' : ''
           }}
