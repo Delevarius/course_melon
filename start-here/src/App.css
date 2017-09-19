@@ -1,0 +1,37 @@
+.todo-input {
+  padding-left: 20px;
+  width: 80%;
+  height: 80px;
+  font-size: 50px;
+  margin-left: 10%;
+}
+.todo-list {
+  padding: 0 20% 0 20%;
+}
+.todo-item {
+  font-size: 40px;
+}
+
+.footer {
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-button {
+  margin: 5px;
+  font-size: 30px;
+  width: 100%;
+  border: none;
+  background-color: teal;
+  color: white;
+}
+.footer-button:hover {
+  background-color: aquamarine;
+}
+.footer-selected {
+  width: 100%;
+  color: grey;
+}
