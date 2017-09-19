@@ -22,10 +22,10 @@ class App extends Component {
     this.setState({ mode });
   }
 
-  checkTodo(checkedIndex) {
+  checkTodo(checkedId) {
     this.setState({
       todoList: this.state.todoList.map((todo, index) => {
-        return checkedIndex === index ? { ...todo, checked: !todo.checked } : todo;
+        return checkedId === todo.id ? { ...todo, checked: !todo.checked } : todo;
       })
     })
   }
@@ -37,7 +37,8 @@ class App extends Component {
         ...this.state.todoList,
         {
           name: this.state.todo,
-          checked: false
+          checked: false,
+          id: this.state.todoList.length
         }
       ]
     })
@@ -48,6 +49,9 @@ class App extends Component {
   }
 
   render() {
+    const filteredList = this.state.mode === 'DONE' ?
+      this.state.todoList.filter(o => o.checked) :
+      this.state.todoList.filter(o => !o.checked);
     return (
       <div className="App">
         <TodoHeader
@@ -56,7 +60,8 @@ class App extends Component {
           addTodo={this.addTodo}
         />
         <TodoList
-          todoList={this.state.todoList}
+          todoList={this.state.mode === 'ALL' ? this.state.todoList : filteredList}
+          mode={this.state.mode}
           checkTodo={this.checkTodo}
         />
         <TodoFilter
