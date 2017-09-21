@@ -2,6 +2,7 @@
   padding: 30px;  
 }
 .todo-input {
+  padding-top: 30px;
   padding-left: 20px;
   width: 80%;
   height: 80px;

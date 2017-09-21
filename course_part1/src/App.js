@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TodoHeader from './components/TodoHeader';
 import TodoList from './components/TodoList';
-import TodoFilter from './components/TodoFilter';
 import './App.css';
 
 class App extends Component {
@@ -9,27 +8,15 @@ class App extends Component {
     super();
     this.state = {
       todo: '',
-      todoList: [],
-      mode: 'ALL'
-    }
+      todoList: []
+    };
     this.inputTodo = this.inputTodo.bind(this);
     this.addTodo = this.addTodo.bind(this);
-    this.checkTodo = this.checkTodo.bind(this);
-    this.changeMode = this.changeMode.bind(this);
   }
 
-  changeMode(mode) {
-    this.setState({ mode });
+  inputTodo(todo) {
+    this.setState({ todo });
   }
-
-  checkTodo(checkedId) {
-    this.setState({
-      todoList: this.state.todoList.map((todo, index) => {
-        return checkedId === todo.id ? { ...todo, checked: !todo.checked } : todo;
-      })
-    })
-  }
-
   addTodo() {
     this.setState({
       todo: '',
@@ -44,14 +31,7 @@ class App extends Component {
     })
   }
 
-  inputTodo(todo) {
-    this.setState({ todo })
-  }
-
   render() {
-    const filteredList = this.state.mode === 'DONE' ?
-      this.state.todoList.filter(o => o.checked) :
-      this.state.todoList.filter(o => !o.checked);
     return (
       <div className="App">
         <TodoHeader
@@ -60,13 +40,7 @@ class App extends Component {
           addTodo={this.addTodo}
         />
         <TodoList
-          todoList={this.state.mode === 'ALL' ? this.state.todoList : filteredList}
-          mode={this.state.mode}
-          checkTodo={this.checkTodo}
-        />
-        <TodoFilter
-          changeMode={this.changeMode}
-          mode={this.state.mode}
+          todoList={this.state.todoList}
         />
       </div>
     );
