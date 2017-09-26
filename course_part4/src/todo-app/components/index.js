@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TodoHeader from './TodoHeader';
 import TodoList from './TodoList';
 import TodoFilter from './TodoFilter';

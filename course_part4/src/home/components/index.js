@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const HomePage = props =>
   <div>
@@ -9,7 +10,7 @@ const HomePage = props =>
         props.inputTodoApp(e.target.value);
       }}
     />
-    <button>Enter your Todo App</button>
+    <Link to="/todo_app" >Enter your Todo App</Link>
   </div>
 ;
 

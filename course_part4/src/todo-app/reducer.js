@@ -1,8 +1,23 @@
 import hat from 'hat';
-import { CHANGE_MODE, CHECK_TODO, ADD_TODO, INPUT_TODO, DELETE_TODO, defaultState } from './constants';
+import store from '../lib/store';
+import { getTodos } from './fetch';
+import { GET_TODOS, SAVE_TODOS, CHANGE_MODE, CHECK_TODO, ADD_TODO, INPUT_TODO, DELETE_TODO, defaultState } from './constants';
 
 export default function todoReducer(state = defaultState, action) {
   switch (action.type) {
+    case GET_TODOS:
+      getTodos().then((response) => {
+        store.dispatch({
+          type: SAVE_TODOS,
+          todoList: response
+        })
+      })
+      return state;
+    case SAVE_TODOS:
+      return {
+        ...state,
+        todoList: action.todoList
+      }
     case CHANGE_MODE:
       return {
         ...state,

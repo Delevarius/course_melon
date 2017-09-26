@@ -1,7 +1,17 @@
-const todos = [ 'todo 1', 'todo 2', 'todo 3', 'todo 4', 'todo 5' ];
+const todos = [
+  {
+    name: 'preloaded 1',
+    checked: false,
+    id: '243asda324'
+  },
+  {
+    name: 'preloaded 2',
+    checked: false,
+    id: '12eadsd1gjy'
+  }
+];
 
 function* getTodo () {
-  console.log('aaaa')
   this.body = todos;
 }
 
@@ -13,15 +23,15 @@ function* addTodo () {
 
 function* removeTodo () {
   const { index } = this.request.body;
-  todos.slice(index)
+  todo = todo.filter(todo => todo.id !== action.id);
   this.response.body = 'TODO REMOVED!'
 }
 
 function* updateTodo () {
   console.log(this.request)
   console.log(this.request.body)
-  const { index, text } = this.request.body;
-  todos[index] = text;
+  const { id, text } = this.request.body;
+  todos[todos.findIndex(o => o.id === id)] = text;
   this.response.body = 'TODO UPDATED!'
 }
 
