@@ -1,0 +1,58 @@
+.App {
+  padding: 30px;  
+}
+.todo-input {
+  padding-top: 30px;
+  padding-left: 20px;
+  width: 80%;
+  height: 80px;
+  font-size: 50px;
+  margin-left: 10%;
+}
+.todo-list {
+  padding: 0 20% 0 20%;
+}
+.todo-item {
+  font-size: 40px;
+  padding: 10px;
+}
+
+.delete-todo {
+
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  background-color: darkred;
+  color: white;
+}
+
+.delete-todo:hover {
+  background-color: red;
+  color: white;
+}
+
+  
+.footer {
+  height: 50px;
+  font-size: 30px;
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-button {
+  margin: 5px;
+  font-size: 30px;
+  width: 100%;
+  border: none;
+  background-color: teal;
+  color: white;
+}
+.footer-button:hover {
+  background-color: aquamarine;
+}
+.footer-selected {
+  width: 100%;
+  color: grey;
+}

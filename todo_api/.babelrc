@@ -1,0 +1,9 @@
+{
+  "presets": [
+    "es2017-node7"
+  ],
+  "plugins": [
+    "syntax-flow", 
+    "transform-flow-strip-types"
+  ]
+}
