@@ -1,4 +1,6 @@
-const todos = [
+import hat from 'hat';
+
+var todos = [
   {
     name: 'preloaded 1',
     checked: false,
@@ -16,21 +18,26 @@ function* getTodo () {
 }
 
 function* addTodo () {
-  const { todo } = this.request.body;
-  todos.push(todo)
+  const { todo } = JSON.parse(this.request.body);
+  todos.push({
+    name: todo,
+    checked: false,
+    id: hat()
+  })
   this.response.body = 'TODO ADDED!'
 }
 
 function* removeTodo () {
-  const { index } = this.request.body;
-  todo = todo.filter(todo => todo.id !== action.id);
+  const { id } = JSON.parse(this.request.body);
+  console.log(id)
+  todos = todos.filter(todo => todo.id !== id);
   this.response.body = 'TODO REMOVED!'
 }
 
 function* updateTodo () {
   console.log(this.request)
   console.log(this.request.body)
-  const { id, text } = this.request.body;
+  const { id, text } = JSON.parse(this.request.body);
   todos[todos.findIndex(o => o.id === id)] = text;
   this.response.body = 'TODO UPDATED!'
 }

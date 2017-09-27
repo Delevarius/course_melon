@@ -8,6 +8,7 @@
     "serve": "node dist/index.js"
   },
   "dependencies": {
+    "hat": "0.0.3",
     "koa": "^1.2.4",
     "koa-bodyparser": "^2.3.0",
     "koa-cors": "0.0.16",

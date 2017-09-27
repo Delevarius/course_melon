@@ -1,6 +1,6 @@
 import hat from 'hat';
 import store from '../lib/store';
-import { getTodos } from './fetch';
+import { getTodos, addTodo, deleteTodo } from './fetch';
 import { GET_TODOS, SAVE_TODOS, CHANGE_MODE, CHECK_TODO, ADD_TODO, INPUT_TODO, DELETE_TODO, defaultState } from './constants';
 
 export default function todoReducer(state = defaultState, action) {
@@ -31,17 +31,12 @@ export default function todoReducer(state = defaultState, action) {
         })
       };
     case ADD_TODO:
+      addTodo(state.todo).then(() => {
+        store.dispatch({ type: GET_TODOS })
+      })
       return {
         ...state,
-        todo: '',
-        todoList: [
-          ...state.todoList,
-          {
-            name: state.todo,
-            checked: false,
-            id: hat()
-          }
-        ]
+        todo: ''
       };
     case INPUT_TODO:
       return {
@@ -49,10 +44,10 @@ export default function todoReducer(state = defaultState, action) {
         todo: action.todo
       };
     case DELETE_TODO:
-      return {
-        ...state,
-        todoList: state.todoList.filter(todo => todo.id !== action.id)
-      };
+      deleteTodo(action.id).then(() => {
+        store.dispatch({ type: GET_TODOS })
+      });
+      return state;
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import TodoApp from './components';
 
 function mapStateToProps(state) {
   return {
-    ...state.homePage
+    todoName: state.homePage.todoName
   };
 }
 
