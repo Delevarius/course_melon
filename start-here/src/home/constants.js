@@ -1,0 +1,1 @@
+export  const INPUT_HOME_PAGE = 'INPUT_HOME_PAGE';

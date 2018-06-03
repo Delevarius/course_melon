@@ -5,7 +5,9 @@ import TodoApp from './components/TodoApp';
 
 function mapStateToProps(state) {
   const { todo, todoList, mode } = state.todoApp;
+  const todoPageName = state.homePage;
   return { 
+    todoPageName,
     todo,
     todoList,
     mode

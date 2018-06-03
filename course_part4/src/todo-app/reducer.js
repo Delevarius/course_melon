@@ -6,7 +6,16 @@ import { GET_TODOS, SAVE_TODOS, CHANGE_MODE, CHECK_TODO, ADD_TODO, INPUT_TODO, D
 export default function todoReducer(state = defaultState, action) {
   switch (action.type) {
     case GET_TODOS:
-      getTodos().then((response) => {
+  const headers = new Headers();
+    
+      fetch('http://localhost:8080/get_todo', {
+        method: 'get',
+        headers
+      }).then((response) => {
+        console.log('first promise resolution', response);
+        return response.json()
+      }).then(json => json)      
+      .then((response) => {
         store.dispatch({
           type: SAVE_TODOS,
           todoList: response
