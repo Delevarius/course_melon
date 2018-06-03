@@ -19,6 +19,7 @@ class App extends Component {
   }
 
   addTodo = () => {
+    this.props.addTodo()
     this.setState({
       todo: '',
       todoList: [
@@ -52,23 +53,23 @@ class App extends Component {
   }
   render() {
     console.log(this.props)
-    const filteredList = this.state.mode === 'DONE' ?
-      this.state.todoList.filter(o => o.checked) :
-      this.state.todoList.filter(o => !o.checked);
+    const filteredList = this.props.mode === 'DONE' ?
+      this.props.todoList.filter(o => o.checked) :
+      this.props.todoList.filter(o => !o.checked);
     return (
       <div className="App">
         <TodoHeader
-          todo={this.state.todo}
+          todo={this.props.todo}
           inputTodo={this.inputTodo}
           addTodo={this.addTodo}
         /> 
         <TodoList
-          todoList={this.state.mode === 'ALL' ? this.state.todoList : filteredList}
+          todoList={this.props.mode === 'ALL' ? this.props.todoList : filteredList}
           checkTodo={this.checkTodo}
           deleteTodo={this.deleteTodo}
         />
         <TodoFilter
-          mode={this.state.mode}
+          mode={this.props.mode}
           changeMode={this.changeMode}
         />
       </div>
